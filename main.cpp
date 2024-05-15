@@ -13,6 +13,7 @@ class superMarket{
     public:
      void menuFunc();
      void addProductFunc();
+     void editFunction();
 };
 
 int main (){
@@ -38,6 +39,10 @@ void superMarket :: menuFunc(){
         addProductFunc();
 
         break;
+
+    case 2:
+
+        editFunction();
     
     default:
         break;
@@ -70,4 +75,63 @@ void superMarket :: addProductFunc(){
     }
 
     productFile.close();   
+}
+
+void superMarket :: editFunction(){
+    
+    fstream productFile, productFile2;
+
+    int tempProductNumber;
+
+    productFile.open("productFile.txt", ios::in);
+    productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
+
+    cout << "Enter The Number Of The You Want To Edit: ";
+    cin >> tempProductNumber;
+
+    if (productFile.is_open())
+    {   
+        do
+        {
+            if (tempProductNumber == *unpProductNumber)
+            {
+                 productFile2.open("productFile2.txt", ios::out | ios::app);
+
+                 cout << "Enter New Product Number: ";
+                 cin >> *unpProductNumber;
+
+                 cout << "Enter New Product Name: ";
+                 cin >> *unpProductName;
+
+                 cout << "Enter New Product Price: ";
+                 cin >> *unpProductPrice;
+
+                 productFile2 << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
+
+                 cout << "Product Details Has Been Change\n";
+            }
+
+            else
+            {
+                 productFile2 << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
+            }
+
+            productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
+
+        } 
+        
+        while (productFile.eof());        
+    }
+
+    else
+    {
+        cout << "Error Has Ocured In Edit Function\n";
+    }
+
+    productFile.close();
+    productFile2.close();
+
+    remove("productFile.txt");
+    rename("productFile2.txt", "productFile.txt");
+   
 }
