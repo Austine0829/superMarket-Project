@@ -69,6 +69,11 @@ void superMarket :: menuFunc(){
         buyProductFunc();
     
     default:
+
+        cout << "Invalid Choice\n";
+
+        menuFunc();
+
         break;
     }
 }
@@ -147,7 +152,9 @@ void superMarket :: addProductFunc(){
          cout << "Error Has Occured In Add Product Function\n";
     }
 
-    productFile.close();   
+    productFile.close();
+
+    adminFunc();
 }
 
 void superMarket :: editFunction(){
@@ -213,6 +220,8 @@ void superMarket :: editFunction(){
 
     remove("productFile.txt");
     rename("productFile2.txt", "productFile.txt");
+
+    adminFunc();
 }
 
 void superMarket :: deleteProductFunc(){
@@ -223,6 +232,10 @@ void superMarket :: deleteProductFunc(){
 
     productFile.open("productFile.txt", ios::in);
     productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
+
+    cout << "------------------------------------\n";
+    cout << "|\t   DELETE PRODUCT          |\n";
+    cout << "------------------------------------\n";
 
     cout << "Enter The Number Of The Product You Want To Delete: ";
     cin >> tempProductNumber;
@@ -255,6 +268,8 @@ void superMarket :: deleteProductFunc(){
 
     remove("productFile.txt");
     rename("productFile2.txt", "productFile.txt");
+
+    adminFunc();
 }
 
 void superMarket :: checkProductsFunc(){
@@ -288,6 +303,8 @@ void superMarket :: checkProductsFunc(){
     }
 
     productFile.close();
+
+    adminFunc();
 }
 
 void superMarket :: buyProductFunc(){
