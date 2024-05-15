@@ -18,6 +18,7 @@ class superMarket{
      int arrSize = sizeof(productNameList)/sizeof(productNameList[0]);
 
     public:
+     void menuFunc();
      void adminFunc();
      void addProductFunc();
      void editFunction();
@@ -32,6 +33,26 @@ int main (){
 
 
     return 0;
+}
+
+void superMarket :: menuFunc(){
+
+    int choice;
+
+    cout << "Ente Choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        
+        adminFunc();
+
+        break;
+    
+    default:
+        break;
+    }
 }
 
 void superMarket :: adminFunc(){
