@@ -162,6 +162,10 @@ void superMarket :: editFunction(){
     productFile.open("productFile.txt", ios::in);
     productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
 
+    cout << "----------------------------------\n";
+    cout << "|\t   EDIT PRODUCT          |\n";
+    cout << "----------------------------------\n";
+
     cout << "Enter The Number Of The You Want To Edit: ";
     cin >> tempProductNumber;
 
