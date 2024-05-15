@@ -19,6 +19,8 @@ class superMarket{
 
     public:
      string orderProductList[100];
+     int arrSizeTwo = sizeof(orderProductList)/sizeof(orderProductList[0]);
+     int orderQuant[100];
      int totalBill = 0;
 
 
@@ -267,7 +269,6 @@ void superMarket :: buyProductFunc(){
     fstream productFile;
 
     int number[100];
-    int quant[100];
     int counter = 0;
     char choice;
 
@@ -279,7 +280,7 @@ void superMarket :: buyProductFunc(){
         cin >> number[counter];
 
         cout << "Enter Quantity: ";
-        cin >> quant[counter];
+        cin >> orderQuant[counter];
 
         cout << "(y) To Order Again (n) To Print Receipt: ";
         cin >> choice;
@@ -298,7 +299,7 @@ void superMarket :: buyProductFunc(){
         {   
             if (number[i] == *unpProductNumber)
             {
-                 totalBill += *unpProductPrice * quant[i];
+                 totalBill += *unpProductPrice * orderQuant[i];
                  orderProductList[i] += *unpProductName;
             }
 
@@ -308,5 +309,28 @@ void superMarket :: buyProductFunc(){
         while (!productFile.eof());
     }
 
-    productFile.close();
+    productFile.close(); 
+
+    receiptFunc();
+}
+
+void superMarket :: receiptFunc(){
+
+    cout << "----------------------------------\n";
+    cout << "|\tSUPER MARKET RECEIPT     |\n";
+    cout << "----------------------------------\n";
+
+    for (int i = 0; i < arrSizeTwo; i++)
+    {
+        if (!orderProductList[i].empty())
+        {
+            cout << orderProductList[i] << " " << orderQuant[i] << "x\n";
+        }   
+    }
+    
+    cout << "----------------------------------\n";
+    cout << "Total Bill: " << totalBill << "\n";
+    cout << "----------------------------------\n";
+
+    menuFunc();
 }
