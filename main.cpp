@@ -51,6 +51,7 @@ void superMarket :: menuFunc(){
     cout << "---------------------------------\n";
     cout << "|\t [1]Adminstrator        |\n";
     cout << "|\t [2]Buy Product         |\n";
+    cout << "|\t [3]Exit                |\n";
     cout << "---------------------------------\n";
     
     cout << "Enter Choice: ";
@@ -67,7 +68,13 @@ void superMarket :: menuFunc(){
     case 2:
 
         buyProductFunc();
-    
+
+    case 3:
+         
+        cout << "---------------------------------------------\n";
+        cout << "|\t   THANK YOU FOR VISITING           |\n";
+        cout << "---------------------------------------------\n";
+
     default:
 
         cout << "Invalid Choice\n";
@@ -87,6 +94,7 @@ void superMarket :: adminFunc(){
     cout << "|\t[2]Edit Product         |\n";
     cout << "|\t[3]Delete Product       |\n";
     cout << "|\t[4]Check Products       |\n";
+    cout << "|\t[5]Back                 |\n";
     cout << "---------------------------------\n";
     
     cout << "Enter Choice: ";
@@ -111,6 +119,10 @@ void superMarket :: adminFunc(){
     case 4:
 
         checkProductsFunc();
+
+    case 5:
+
+        menuFunc();
     
     default:
 
@@ -303,8 +315,6 @@ void superMarket :: checkProductsFunc(){
     }
 
     productFile.close();
-
-    adminFunc();
 }
 
 void superMarket :: buyProductFunc(){
