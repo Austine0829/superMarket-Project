@@ -14,6 +14,7 @@ class superMarket{
      void menuFunc();
      void addProductFunc();
      void editFunction();
+     void deleteProductFunc();
 };
 
 int main (){
@@ -43,6 +44,10 @@ void superMarket :: menuFunc(){
     case 2:
 
         editFunction();
+
+    case 3: 
+
+        deleteProductFunc();
     
     default:
         break;
@@ -57,21 +62,21 @@ void superMarket :: addProductFunc(){
 
     if (productFile.is_open())
     {
-        cout << "Enter Product Number: ";
-        cin >> *unpProductNumber;
+         cout << "Enter Product Number: ";
+         cin >> *unpProductNumber;
 
-        cout << "Enter Product Name: ";
-        cin >> *unpProductName;
+         cout << "Enter Product Name: ";
+         cin >> *unpProductName;
 
-        cout << "Enter Product Price: ";
-        cin >> *unpProductPrice;
+         cout << "Enter Product Price: ";
+         cin >> *unpProductPrice;
 
-        productFile << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
+         productFile << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
     }
 
     else
     {
-        cout << "Error Has Occured In Add Product Function\n";
+         cout << "Error Has Occured In Add Product Function\n";
     }
 
     productFile.close();   
@@ -128,7 +133,49 @@ void superMarket :: editFunction(){
 
     else
     {
-        cout << "Error Has Ocured In Edit Function\n";
+         cout << "Error Has Ocured In Edit Function\n";
+    }
+
+    productFile.close();
+    productFile2.close();
+
+    remove("productFile.txt");
+    rename("productFile2.txt", "productFile.txt");
+}
+
+void superMarket :: deleteProductFunc(){
+
+    fstream productFile, productFile2;
+
+    int tempProductNumber;
+
+    productFile.open("productFile.txt", ios::in);
+    productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
+
+    cout << "Enter The Number Of The Product You Want To Delete: ";
+    cin >> tempProductNumber;
+
+    if (productFile.is_open())
+    {   
+        
+        do
+        {
+            if (tempProductNumber == *unpProductNumber)
+            { 
+                 productFile2.open("productFile2.txt", ios::out | ios::app);
+
+                 cout << "Product Details Has Been Deleted\n";   
+            }
+
+            productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice; 
+        }   
+        
+        while (!productFile.eof());     
+    }
+    
+    else
+    {
+        "Error Has Occured In Delete Function\n";
     }
 
     productFile.close();
