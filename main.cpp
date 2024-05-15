@@ -18,18 +18,25 @@ class superMarket{
      int arrSize = sizeof(productNameList)/sizeof(productNameList[0]);
 
     public:
+     string orderProductList[100];
+     int totalBill = 0;
+
+
+    public:
      void menuFunc();
      void adminFunc();
      void addProductFunc();
      void editFunction();
      void deleteProductFunc();
      void checkProductsFunc();
+     void buyProductFunc();
+     void receiptFunc();
 };
 
 int main (){
     
     superMarket out;
-    out.adminFunc();
+    out.menuFunc();
 
 
     return 0;
@@ -49,6 +56,10 @@ void superMarket :: menuFunc(){
         adminFunc();
 
         break;
+    
+    case 2:
+
+        buyProductFunc();
     
     default:
         break;
@@ -246,6 +257,55 @@ void superMarket :: checkProductsFunc(){
     else
     {
          "Error Has Occured In Check Products Function\n";
+    }
+
+    productFile.close();
+}
+
+void superMarket :: buyProductFunc(){
+
+    fstream productFile;
+
+    int number[100];
+    int quant[100];
+    int counter = 0;
+    char choice;
+
+    checkProductsFunc();
+
+    do
+    {   
+        cout << "Enter Product Number: ";
+        cin >> number[counter];
+
+        cout << "Enter Quantity: ";
+        cin >> quant[counter];
+
+        cout << "(y) To Order Again (n) To Print Receipt: ";
+        cin >> choice;
+
+        counter ++;
+    } 
+        
+    while (choice == 'y');
+
+    for (int i = 0; i < counter; i++)
+    {
+        productFile.open("productFile.txt", ios::in);
+        productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
+            
+        do
+        {   
+            if (number[i] == *unpProductNumber)
+            {
+                 totalBill += *unpProductPrice * quant[i];
+                 orderProductList[i] += *unpProductName;
+            }
+
+            productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
+        } 
+            
+        while (!productFile.eof());
     }
 
     productFile.close();
