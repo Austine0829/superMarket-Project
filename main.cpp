@@ -69,11 +69,15 @@ void superMarket :: menuFunc(){
 
         buyProductFunc();
 
+        break;
+
     case 3:
          
         cout << "---------------------------------------------\n";
         cout << "|\t   THANK YOU FOR VISITING           |\n";
         cout << "---------------------------------------------\n";
+
+        break;
 
     default:
 
