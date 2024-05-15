@@ -108,6 +108,11 @@ void superMarket :: adminFunc(){
         checkProductsFunc();
     
     default:
+
+        cout << "invalid Choice\n";
+
+        adminFunc();
+
         break;
     }
 }
@@ -119,7 +124,12 @@ void superMarket :: addProductFunc(){
     productFile.open("productFile.txt", ios::out | ios::app);
 
     if (productFile.is_open())
-    {
+    {    
+
+         cout << "---------------------------------\n";
+         cout << "|\t   ADD PRODUCT          |\n";
+         cout << "---------------------------------\n";
+
          cout << "Enter Product Number: ";
          cin >> *unpProductNumber;
 
