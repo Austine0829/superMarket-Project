@@ -82,6 +82,9 @@ void superMarket :: editFunction(){
     fstream productFile, productFile2;
 
     int tempProductNumber;
+    string newProductName;
+    int newProductPrice;
+    int newProdcutNumber;
 
     productFile.open("productFile.txt", ios::in);
     productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
@@ -98,29 +101,29 @@ void superMarket :: editFunction(){
                  productFile2.open("productFile2.txt", ios::out | ios::app);
 
                  cout << "Enter New Product Number: ";
-                 cin >> *unpProductNumber;
+                 cin >> newProdcutNumber;
 
                  cout << "Enter New Product Name: ";
-                 cin >> *unpProductName;
+                 cin >> newProductName;
 
                  cout << "Enter New Product Price: ";
-                 cin >> *unpProductPrice;
+                 cin >> newProductPrice;
 
-                 productFile2 << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
+                 productFile2 << newProdcutNumber << " " << newProductName << " " << newProductPrice << "\n";
 
                  cout << "Product Details Has Been Change\n";
             }
 
             else
             {
-                 productFile2 << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
+                 productFile2 << newProdcutNumber << " " << newProductName << " " << newProductPrice << "\n";
             }
 
             productFile >> *unpProductNumber >> *unpProductName >> *unpProductPrice;
 
         } 
         
-        while (productFile.eof());        
+        while (!productFile.eof());        
     }
 
     else
@@ -133,5 +136,4 @@ void superMarket :: editFunction(){
 
     remove("productFile.txt");
     rename("productFile2.txt", "productFile.txt");
-   
 }
