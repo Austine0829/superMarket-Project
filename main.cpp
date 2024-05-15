@@ -66,7 +66,7 @@ void superMarket :: addProductFunc(){
         cout << "Enter Product Price: ";
         cin >> *unpProductPrice;
 
-        productFile << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice;
+        productFile << *unpProductNumber << " " << *unpProductName << " " << *unpProductPrice << "\n";
     }
 
     else
