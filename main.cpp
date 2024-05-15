@@ -18,7 +18,7 @@ class superMarket{
      int arrSize = sizeof(productNameList)/sizeof(productNameList[0]);
 
     public:
-     void menuFunc();
+     void adminFunc();
      void addProductFunc();
      void editFunction();
      void deleteProductFunc();
@@ -28,13 +28,13 @@ class superMarket{
 int main (){
     
     superMarket out;
-    out.menuFunc();
+    out.adminFunc();
 
 
     return 0;
 }
 
-void superMarket :: menuFunc(){
+void superMarket :: adminFunc(){
 
     int choice;
     
