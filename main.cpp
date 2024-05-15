@@ -3,6 +3,7 @@
 #include <memory>
 
 using namespace std;
+using std:: string, std:: cout, std:: cin;
 
 class superMarket{
     public:
@@ -11,10 +12,17 @@ class superMarket{
      unique_ptr<int>unpProductNumber = make_unique<int>();
 
     public:
+     string productNameList[100];
+     int productPriceList[100];
+     int productNumberList[100];
+     int arrSize = sizeof(productNameList)/sizeof(productNameList[0]);
+
+    public:
      void menuFunc();
      void addProductFunc();
      void editFunction();
      void deleteProductFunc();
+     void checkProductsFunc();
 };
 
 int main (){
@@ -48,6 +56,10 @@ void superMarket :: menuFunc(){
     case 3: 
 
         deleteProductFunc();
+
+    case 4:
+
+        checkProductsFunc();
     
     default:
         break;
@@ -183,4 +195,37 @@ void superMarket :: deleteProductFunc(){
 
     remove("productFile.txt");
     rename("productFile2.txt", "productFile.txt");
+}
+
+void superMarket :: checkProductsFunc(){
+
+    fstream productFile;
+
+    productFile.open("productFile.txt", ios::in);
+
+    cout << "------------------------------------------------------------------------------\n";
+    cout << "|\t\t\t  SUPER MARKET PRODUCT LIST                          |\n";
+    cout << "------------------------------------------------------------------------------\n";
+    cout << "|Product Number           |" << "Product Name            |" << "Product Price            |\n";
+    cout << "------------------------------------------------------------------------------\n";
+    
+    if (productFile.is_open())
+    {
+        for (int i = 0; i < arrSize; i++)
+        {   
+             productFile >> productNumberList[i] >> productNameList[i] >> productPriceList[i];
+
+             if (!productNameList[i].empty())
+             {
+                 cout << "\t" << productNumberList[i] << "\t\t\t" << productNameList[i] << "\t\t\t" << productPriceList[i] << "\n";
+             }        
+        }    
+    }
+    
+    else
+    {
+         "Error Has Occured In Check Products Function\n";
+    }
+
+    productFile.close();
 }
