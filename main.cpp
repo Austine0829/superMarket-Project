@@ -48,6 +48,11 @@ void superMarket :: menuFunc(){
 
     int choice;
 
+    cout << "---------------------------------\n";
+    cout << "|\t [1]Adminstrator        |\n";
+    cout << "|\t [2]Buy Product         |\n";
+    cout << "---------------------------------\n";
+    
     cout << "Ente Choice: ";
     cin >> choice;
 
