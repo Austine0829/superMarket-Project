@@ -76,6 +76,13 @@ void superMarket :: menuFunc(){
 void superMarket :: adminFunc(){
 
     int choice;
+
+    cout << "---------------------------------\n";
+    cout << "|\t[1]Add Product          |\n";
+    cout << "|\t[2]Edit Product         |\n";
+    cout << "|\t[3]Delete Product       |\n";
+    cout << "|\t[4]Check Products       |\n";
+    cout << "---------------------------------\n";
     
     cout << "Enter Choice: ";
     cin >> choice;
