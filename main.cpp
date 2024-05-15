@@ -53,7 +53,7 @@ void superMarket :: menuFunc(){
     cout << "|\t [2]Buy Product         |\n";
     cout << "---------------------------------\n";
     
-    cout << "Ente Choice: ";
+    cout << "Enter Choice: ";
     cin >> choice;
 
     switch (choice)
